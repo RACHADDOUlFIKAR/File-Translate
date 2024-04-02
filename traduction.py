@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-
-import fitz  # PyMuPDF // pip install PyMuPDF==1.18.19
-from googletrans import Translator  # pip install googletrans
+ #Tapez la commande : pip install PyMuPDF googletrans==4.0.0-rc1
+import fitz  
+from googletrans import Translator 
 
 
 pdf_path = "C:/Users/pc/Desktop/projet_traduction/Antigone.pdf"
