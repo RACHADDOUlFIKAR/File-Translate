@@ -1,10 +1,10 @@
+# -*- coding: utf-8 -*-
+
 import fitz  # PyMuPDF // pip install PyMuPDF==1.18.19
+from googletrans import Translator  # pip install googletrans
 
-from googletrans import Translator # pip install googletrans
 
-
-pdf_path = "Your_Path/Antigone.pdf"
-
+pdf_path = "C:/Users/pc/Desktop/projet_traduction/Antigone.pdf"
 
 def extract_text_from_pdf(pdf_path):
     text = ""
@@ -13,17 +13,17 @@ def extract_text_from_pdf(pdf_path):
             text += page.get_text()
     return text
 
-
 def translate_text_chunks(text_fr, chunk_size=500):
     translator = Translator()
-    text_chunks = [text_fr[i:i+chunk_size] for i in range(0, len(text_fr), chunk_size)]
+    text_chunks = [text_fr[i:i + chunk_size] for i in range(0, len(text_fr), chunk_size)]
     text_en_chunks = []
     for chunk in text_chunks:
         if chunk.strip():  # Vérifier que le morceau de texte n'est pas vide
             try:
                 translation = translator.translate(chunk, src='fr', dest='en')
-                if translation:
+                if translation.text:
                     text_en_chunks.append(translation.text)
+                    print(translation.text)
                 else:
                     text_en_chunks.append("Erreur lors de la traduction")
             except Exception as e:
@@ -32,15 +32,14 @@ def translate_text_chunks(text_fr, chunk_size=500):
             text_en_chunks.append("Le morceau de texte à traduire est vide")
     return " ".join(text_en_chunks)  # Fusionner les morceaux traduits en un seul texte
 
-
 text_fr = extract_text_from_pdf(pdf_path)
+text_en = ""
+try:
+    text_en = translate_text_chunks(text_fr)
+except Exception as e:
+    print(f"Une erreur s'est produite lors de la traduction : {str(e)}")
 
-
-text_en = translate_text_chunks(text_fr)
-
-
-output_file_path = "Your_Path/Antigone_en.txt"
-
+output_file_path = "C:/Users/pc/Desktop/projet_traduction/Antigone_en.txt"
 
 with open(output_file_path, "w", encoding="utf-8") as output_file:
     output_file.write(text_en)
