@@ -1,8 +1,9 @@
-import fitz  # PyMuPDF
-from googletrans import Translator
+import fitz  # PyMuPDF // pip install PyMuPDF==1.18.19
+
+from googletrans import Translator # pip install googletrans
 
 
-pdf_path = "C:/Users/RACHAD/Desktop/traduction/Antigone.pdf"
+pdf_path = "Your_Path/Antigone.pdf"
 
 
 def extract_text_from_pdf(pdf_path):
@@ -38,7 +39,7 @@ text_fr = extract_text_from_pdf(pdf_path)
 text_en = translate_text_chunks(text_fr)
 
 
-output_file_path = "C:/Users/RACHAD/Desktop/traduction/Antigone_en.txt"
+output_file_path = "Your_Path/Antigone_en.txt"
 
 
 with open(output_file_path, "w", encoding="utf-8") as output_file:
