@@ -4,4 +4,5 @@ python -m pip install --upgrade pip
 
 pip install PyMuPDF
 
-pip install googletrans
+pip install PyMuPDF googletrans==4.0.0-rc1
+
